@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lunbo1</title>
+</head>
+<style>
+* {
+    margin:0;
+    padding:0
+}
+img{
+    border:none;
+    vertical-align: top;
+    width:100%;
+    height:100%
+}
+#box {
+    width:450px;
+    height:400px;
+    position: relative;
+    margin:30px auto;
+    overflow: hidden;
+}
+ul {
+    width:450px;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:1;
+}
+ul li {
+    width:450px;
+    display:none;
+}
+ol {
+    z-index: 2;
+    width:120px;
+    position:absolute;
+    right:10px;
+    bottom:10px;
+}
+ol li {
+    width:20px;
+    height:20px;
+    float:left;
+    margin:0 2px;
+    display:inline;
+    background:#fff;
+    color:#f60;
+    line-height:20px;
+    text-align: center;
+}
+ol .active {
+    background:#f60;
+    color:#fff
+}
+</style>
+<body>
+    <div id="box">
+        <ul>
+            <li style = "display:block"><img src = "images/1.jpg"></li>
+            <li><img src = "images/2.jpg"></li>
+            <li><img src = "images/3.jpg"></li>
+            <li><img src = "images/4.jpg"></li>
+            <li><img src = "images/5.jpg"></li>
+        </ul>
+        <!-- 轮播的按钮 -->
+        <ol>
+            <li class = "active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ol>
+    </div>
+</body>
+<script>
+    window.onload = function(){
+        var oUl = document.getElementsByTagName("ul")[0];
+        var oLiUl = oUl.getElementsByTagName("li");
+        var oOl = document.getElementsByTagName("ol")[0];
+        var oLiOl = oOl.getElementsByTagName("li");
+        for(var i = 0; i < oLiOl.length; i++){
+            // 使ul中的li和ol中的li产生关联
+            oLiOl[i].index = i;
+            oLiOl[i].onmouseover = function(){
+                for(var i = 0; i < oLiOl.length; i++){
+                    oLiOl[i].className = "";
+                    oLiUl[i].style.display = "none"
+                }
+                this.className = "active";
+                oLiUl[this.index].style.display = "block"
+            }
+        }
+    }
+</script>
+
+</html>
